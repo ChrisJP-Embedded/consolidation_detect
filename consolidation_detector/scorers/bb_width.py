@@ -6,6 +6,8 @@ import logging
 
 class BBWidthConsolidation(ConsolidationScorer):
     def __init__(self, period: int = 20, normalize_range=(0.0, 0.05)):
+        if period <= 0:
+            raise ValueError("period must be positive")
         self.period = period
         self.min_width, self.max_width = normalize_range
 

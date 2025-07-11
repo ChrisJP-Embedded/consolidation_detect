@@ -4,11 +4,14 @@ import numpy as np
 from consolidation_detector.scorers.bb_width import BBWidthConsolidation
 
 def test_bb_width():
-    # Create fake data: trending + consolidation
+    # Create fake data: trending interspersed with consolidation periods
     np.random.seed(0)
-    trend = np.linspace(100, 120, 100)
-    consolidation = np.ones(50) * 120 + np.random.normal(0, 0.2, 50)
-    prices = np.concatenate([trend, consolidation, trend])
+    trend1 = np.linspace(100, 110, 60)
+    consolidation1 = np.ones(40) * 110 + np.random.normal(0, 0.2, 40)
+    trend2 = np.linspace(110, 120, 60)
+    consolidation2 = np.ones(40) * 120 + np.random.normal(0, 0.2, 40)
+    trend3 = np.linspace(120, 130, 60)
+    prices = np.concatenate([trend1, consolidation1, trend2, consolidation2, trend3])
 
     df = pd.DataFrame({
         "close": prices,

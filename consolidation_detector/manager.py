@@ -12,8 +12,10 @@ class ConsolidationManager:
             raise ValueError("Number of weights must match number of scorers")
 
     def compute_combined_score(self, data: pd.DataFrame) -> float:
+
         if not isinstance(data, pd.DataFrame):
             raise TypeError("data must be a pandas DataFrame")
+
         scores = []
         for scorer in self.scorers:
             try:
@@ -25,10 +27,12 @@ class ConsolidationManager:
 
         weighted = [s * w for s, w in zip(scores, self.weights)]
         try:
+
             denom = sum(self.weights)
             if denom == 0:
                 raise ZeroDivisionError("Sum of weights is zero")
             combined = sum(weighted) / denom
+
         except Exception as exc:
             logging.exception("Failed to compute combined score: %s", exc)
             combined = 0.0

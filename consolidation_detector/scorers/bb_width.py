@@ -5,6 +5,8 @@ import numpy as np
 import logging
 
 class BBWidthConsolidation(ConsolidationScorer):
+    def __init__(self, window: int = 20):
+        self.window = window
     def __init__(self, period: int = 20, normalize_range=(0.0, 0.05)):
         if period <= 0:
             raise ValueError("period must be positive")
@@ -39,3 +41,10 @@ class BBWidthConsolidation(ConsolidationScorer):
         except Exception as exc:
             logging.exception("Failed to compute BB width score: %s", exc)
             return 0.0
+
+
+def validate_ohlc_df(df):
+    required = {'close'}
+    missing = required - set(df.columns)
+    if missing:
+        raise ValueError(f"Missing required columns: {missing}")

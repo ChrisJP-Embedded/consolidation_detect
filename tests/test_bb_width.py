@@ -21,6 +21,7 @@ class TestBBWidth(unittest.TestCase):
             "volume": np.random.randint(100, 200, len(prices)),
         })
 
+
         bb = BBWidthConsolidation(period=20)
         score = bb.compute_score(df)
         print(f"BB Width Score: {score}")

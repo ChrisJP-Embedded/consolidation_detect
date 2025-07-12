@@ -7,7 +7,7 @@ verify_ssl = true
 [packages]
 pandas = "*"
 numpy = "*"
-matplotlib "*"
+matplotlib = "*"
 
 [dev-packages]
 

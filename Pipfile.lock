@@ -5,7 +5,7 @@
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.11"
+            "python_version": ">=3.10"
         },
         "sources": [
             {
@@ -317,7 +317,7 @@
                 "sha256:ee8340cb48c9b7a5899d1149eece41ca535513a9698098edbade2a8e7a84da77"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.11'",
+            "markers": "python_version >= '3.10'",
             "version": "==2.3.1"
         },
         "packaging": {

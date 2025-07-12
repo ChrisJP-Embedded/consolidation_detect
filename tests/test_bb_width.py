@@ -5,7 +5,6 @@ import numpy as np
 from consolidation_detector.scorers.bb_width import BBWidthConsolidation
 from examples.plot_test_data import generate_test_data
 
-
 class TestBBWidth(unittest.TestCase):
     def test_bb_width(self):
         """BBWidthConsolidation returns a score between 0 and 1."""
@@ -25,7 +24,6 @@ class TestBBWidth(unittest.TestCase):
         print(f"BB Width Score: {score}")
         self.assertGreaterEqual(score, 0)
         self.assertLessEqual(score, 1)
-
 
 if __name__ == "__main__":
     unittest.main()

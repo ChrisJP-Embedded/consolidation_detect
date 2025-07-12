@@ -34,3 +34,4 @@ detector = ConsolidationDetector(scorers, threshold=0.8, comparison="gte")
 if detector.detect(price_dataframe):
     print("Consolidation detected")
 ```
+

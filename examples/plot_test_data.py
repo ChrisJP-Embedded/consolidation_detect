@@ -2,6 +2,7 @@ import os
 import sys
 import numpy as np
 import pandas as pd
+
 # Ensure the project package is importable when running this script directly
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from consolidation_detector.scorers.bb_width import BBWidthConsolidation

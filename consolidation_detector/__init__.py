@@ -9,3 +9,4 @@ __all__ = [
     "BBWidthConsolidation",
     "ConsolidationDetector",
 ]
+

@@ -1,6 +1,10 @@
-
-from tests.test_bb_width import test_bb_width
+import unittest
 
 if __name__ == "__main__":
-    test_bb_width()
-    print("All tests passed.")
+    suite = unittest.defaultTestLoader.discover("tests")
+    runner = unittest.TextTestRunner()
+    result = runner.run(suite)
+    if result.wasSuccessful():
+        print("All tests passed.")
+    else:
+        raise SystemExit(1)

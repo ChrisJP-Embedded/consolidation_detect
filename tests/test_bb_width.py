@@ -9,6 +9,7 @@ from examples.plot_test_data import generate_test_data
 class TestBBWidth(unittest.TestCase):
     def test_bb_width(self):
         """BBWidthConsolidation returns a score between 0 and 1."""
+
         # Use synthetic data with multiple unique consolidation phases
         prices_df = generate_test_data()
         prices = prices_df['close'].to_numpy()

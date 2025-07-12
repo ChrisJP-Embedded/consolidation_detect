@@ -2,7 +2,6 @@ import os
 import sys
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 
 # Ensure the project package is importable when running this script directly
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -10,15 +9,31 @@ from consolidation_detector.scorers.bb_width import BBWidthConsolidation
 
 
 def generate_test_data():
-    """Return DataFrame with synthetic price data containing two consolidation phases."""
+    """Return DataFrame with synthetic price data containing multiple consolidation phases."""
     np.random.seed(0)
-    trend1 = np.linspace(100, 110, 60)
-    cons1 = np.ones(40) * 110 + np.random.normal(0, 0.2, 40)
-    trend2 = np.linspace(110, 120, 60)
-    cons2 = np.ones(40) * 120 + np.random.normal(0, 0.2, 40)
-    trend3 = np.linspace(120, 130, 60)
-    prices = np.concatenate([trend1, cons1, trend2, cons2, trend3])
 
+    def trend(start, stop, length):
+        return np.linspace(start, stop, length) + np.random.normal(0, 0.5, length)
+
+    def consolidation(level, length):
+        return np.full(length, level) + np.random.normal(0, 0.2, length)
+
+    segments = [
+        trend(100, 120, 80),
+        consolidation(120, 30),
+        trend(120, 90, 70),
+        consolidation(90, 25),
+        trend(90, 110, 60),
+        consolidation(110, 35),
+        trend(110, 95, 50),
+        consolidation(95, 30),
+        trend(95, 115, 70),
+        consolidation(115, 40),
+        trend(115, 100, 60),
+        consolidation(100, 30),
+    ]
+
+    prices = np.concatenate(segments)
     df = pd.DataFrame({'close': prices})
     return df
 
@@ -37,6 +52,7 @@ def compute_scores(df, period=20):
 
 
 def main(output_file='consolidation_example.png'):
+    import matplotlib.pyplot as plt
     df = generate_test_data()
     scores = compute_scores(df)
 

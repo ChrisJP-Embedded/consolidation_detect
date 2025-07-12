@@ -1,3 +1,4 @@
+import unittest
 import pandas as pd
 import numpy as np
 
@@ -11,11 +12,17 @@ class FailingScorer(ConsolidationScorer):
         raise ValueError("failure")
 
 
-def test_manager_handles_scorer_failure():
-    df = pd.DataFrame({"close": np.arange(30)})
-    manager = ConsolidationManager([
-        BBWidthConsolidation(period=5),
-        FailingScorer(),
-    ])
-    score = manager.compute_combined_score(df)
-    assert 0 <= score <= 1
+class TestManagerRobustness(unittest.TestCase):
+    def test_manager_handles_scorer_failure(self):
+        df = pd.DataFrame({"close": np.arange(30)})
+        manager = ConsolidationManager([
+            BBWidthConsolidation(period=5),
+            FailingScorer(),
+        ])
+        score = manager.compute_combined_score(df)
+        self.assertGreaterEqual(score, 0)
+        self.assertLessEqual(score, 1)
+
+
+if __name__ == "__main__":
+    unittest.main()

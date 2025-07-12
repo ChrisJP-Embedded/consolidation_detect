@@ -25,6 +25,5 @@ class TestBBWidth(unittest.TestCase):
         self.assertGreaterEqual(score, 0)
         self.assertLessEqual(score, 1)
 
-
 if __name__ == "__main__":
     unittest.main()

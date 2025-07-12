@@ -1,4 +1,12 @@
+from .base import ConsolidationScorer
 from .manager import ConsolidationManager
 from .scorers.bb_width import BBWidthConsolidation
-from .kraken_adapter import kraken_ohlc_to_df
-__all__ = ["ConsolidationManager", "BBWidthConsolidation", "kraken_ohlc_to_df"]
+from .detector import ConsolidationDetector
+
+__all__ = [
+    "ConsolidationScorer",
+    "ConsolidationManager",
+    "BBWidthConsolidation",
+    "ConsolidationDetector",
+]
+

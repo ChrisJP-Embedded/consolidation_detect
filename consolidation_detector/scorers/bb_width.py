@@ -37,5 +37,5 @@ class BBWidthConsolidation(ConsolidationScorer):
         except KeyError as e:
             raise KeyError("Input data must contain a 'close' column") from e
         except Exception as exc:
-            logging.exception("Failed to compute BB width score: %s", exc)
+            logging.error("Failed to compute BB width score: %s", exc)
             return 0.0

@@ -21,7 +21,7 @@ class ConsolidationManager:
             try:
                 score = scorer.compute_score(data)
             except Exception as exc:
-                logging.exception("Scorer %s failed: %s", scorer.__class__.__name__, exc)
+                logging.error("Scorer %s failed: %s", scorer.__class__.__name__, exc)
                 score = 0.0
             scores.append(score)
 

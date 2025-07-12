@@ -13,4 +13,3 @@ matplotlib = "*"
 
 [requires]
 python_version = ">=3.11"
-

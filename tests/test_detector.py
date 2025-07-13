@@ -1,15 +1,22 @@
 import unittest
 import pandas as pd
 
-from consolidation_detector import ConsolidationDetector, ConsolidationScorer
+from consolidation_detector import (
+    ConsolidationDetector,
+    ConsolidationScorer,
+)
 
 
 class FixedScorer(ConsolidationScorer):
-    def __init__(self, score: float):
+    def __init__(self, score: float, window: int = 1):
         self.score = score
+        self.window = window
 
-    def compute_score(self, data: pd.DataFrame) -> float:
+    def _compute_score(self, data: pd.DataFrame) -> float:
         return self.score
+
+    def get_required_window(self) -> int:
+        return self.window
 
 
 class TestConsolidationDetector(unittest.TestCase):

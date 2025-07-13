@@ -3,6 +3,7 @@ import unittest
 import pandas as pd
 import numpy as np
 from consolidation_detector.scorers.bb_width import BBWidthConsolidation
+from consolidation_detector.base import FeatureType
 from examples.plot_test_data import generate_test_data
 
 class TestBBWidth(unittest.TestCase):
@@ -20,7 +21,7 @@ class TestBBWidth(unittest.TestCase):
         })
 
         bb = BBWidthConsolidation(period=20)
-        score = bb.compute_score(df)
+        score = bb.compute_score_feature_type(df, FeatureType.SCORE)
         print(f"BB Width Score: {score}")
         self.assertGreaterEqual(score, 0)
         self.assertLessEqual(score, 1)

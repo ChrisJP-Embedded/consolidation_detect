@@ -8,8 +8,11 @@ from consolidation_detector.scorers.bb_width import BBWidthConsolidation
 
 
 class FailingScorer(ConsolidationScorer):
-    def compute_score(self, data: pd.DataFrame) -> float:
+    def _compute_score(self, data: pd.DataFrame) -> float:
         raise ValueError("failure")
+
+    def get_required_window(self) -> int:
+        return 1
 
 
 class TestManagerRobustness(unittest.TestCase):

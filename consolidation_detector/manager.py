@@ -1,5 +1,5 @@
 
-from consolidation_detector.base import ConsolidationScorer
+from consolidation_detector.base import ConsolidationScorer, FeatureType
 import pandas as pd
 import numpy as np
 import logging

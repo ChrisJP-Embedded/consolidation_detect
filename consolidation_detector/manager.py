@@ -19,7 +19,7 @@ class ConsolidationManager:
         scores = []
         for scorer in self.scorers:
             try:
-                score = scorer.compute_score(data)
+                score = scorer.compute_score_feature_type(data, FeatureType.SCORE)
             except Exception as exc:
                 logging.error("Scorer %s failed: %s", scorer.__class__.__name__, exc)
                 score = 0.0
